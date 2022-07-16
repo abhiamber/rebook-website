@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup page</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #signup{
+            width: 60%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+text-align: center;
+        }
+        form{
+            width: 40%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+           
+        }
+        
+        input{
+            padding: 10px;
+            margin: 5px 0px;
+            cursor: pointer;
+        }
+        button{
+            width: 40%;
+            margin: auto;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div id="logo">
+          <h2>Rebook</h2>
+        </div>
+        <div id="menu">
+          <ul>
+            <li><a href="mens.html">Men</a></li>
+            <li> <a href="womens.html">Women</a> </li>
+            <li> <a href="loginpage.html">Login</a></li>
+            <li><a href="signup.html">SignUp</a></li>
+            
+          </ul>
+        </div>
+      </div>
+
+    <div id="signup">
+        <h1>Masai</h1>
+        <form >
+            <input id="email" type="email" placeholder="Enter Email">
+            <input id="Number" type="tel" placeholder="Enter Mobile Number">
+            <input id="pwd" type="password" placeholder="Enter Password">
+            <input type="Submit" value="SignUp">
+
+        </form>
+        <!-- <button> Login</button> -->
+    </div>
+   
+</body>
+</html>
+
+<script>
+    let dataArray;
+    if(localStorage.getItem("Objdata")==null){
+        dataArray=[]
+    }else{
+        dataArray=JSON.parse(localStorage.getItem("Objdata"))
+    }
+let signups=document.querySelector("form")
+signups.addEventListener("submit",myFunc)
+
+// let login=document.querySelector("button").addEventListener("click",Loginpage)
+
+// function Loginpage(){
+//     let emailid=document.querySelector("#email").value
+//     let Mobile=document.querySelector("#Number").value
+//     let originalPasswords=document.querySelector("#pwd").value
+    
+//     dataArray.map(function(elem,index){
+//         if(elem.emails==emailid && elem.mob==Mobile && elem.pass==originalPasswords ){
+//             alert("Login Succesfull")
+//         }else if(index==dataArray.length-1){
+//             alert("Please type correct details")
+//         }
+//         // console.log(elem.emails,elem.mob,elem.pass)
+//         // console.log(emailid,Mobile,originalPasswords)
+
+
+//     })
+    
+
+
+// }
+
+function myFunc(e){
+    e.preventDefault()
+    let email=document.querySelector("#email").value
+    let Numbers=document.querySelector("#Number").value
+    let passwords=document.querySelector("#pwd").value
+    if(email!="" && Numbers!="" && passwords!=""){
+        let obj={emails:email,mob:Numbers,pass:passwords}
+     dataArray.push(obj)
+     localStorage.setItem("Objdata",JSON.stringify(dataArray))
+     alert("Signup Suceesfull")
+     window.location.href = "http://127.0.0.1:5501/unit-2/sprint-4/day-2/assignments/Ecoomerce/loginpage.html"
+
+    }
+
+    
+
+    // console.log(email,Numbers,passwords)
+}
+
+
+
+
+
+</script>

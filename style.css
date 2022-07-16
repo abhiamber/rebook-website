@@ -1,0 +1,37 @@
+
+      #navbar {
+        display: flex;
+        justify-content: space-between;
+        background-color: rgba(18, 49, 88, 0.747);
+        color: white;
+        border-radius: 20px;
+        font-size: 20px;
+        flex-wrap: wrap;
+        /* text-align: center; */
+        position:sticky ;
+        top: 1px;
+      }
+      #logo {
+        padding-left: 25px;
+        cursor: pointer;
+      }
+      #menu > ul > li {
+        display: inline;
+        padding-right: 25px;
+        cursor: pointer;
+      }
+      li:hover{
+        color: rgb(125, 163, 123);
+      }
+      ul {
+        margin-top: 33px;
+      }
+      #menu > ul > li > a{
+        display: inline;
+        padding-right: 25px;
+        cursor: pointer;
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    

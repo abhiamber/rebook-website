@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartitems</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      h1 {
+        color: teal;
+        text-align: center;
+      }
+      .mens {
+        width: 95%;
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin: auto;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+      .mens > div {
+        width: 90%;
+        margin: auto;
+        height: auto;
+        margin-top: 10px;
+      }
+      img {
+        width: 70%;
+      }
+      #price {
+        font-size: 30px;
+        color: teal;
+        position: fixed;
+        left: 40px;
+        top: 110px;
+      }
+      #promocode,
+      #promobtn,#payment>a>button{
+        padding: 10px;
+        margin-left: 30px;
+        font-size: 20px;
+        border: 2px solid gray;
+        cursor: pointer;
+        border-radius: 10px;
+      }
+      #promobtn:hover,#payment>a>button:hover{
+        background-color: teal;
+        color: rgb(228, 6, 6);
+      }
+      #payment>a>button{
+        margin: 10px 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar">
+      <div id="logo">
+        <h2>Rebook</h2>
+      </div>
+      <div id="menu">
+        <ul>
+          <li><a href="mens.html">Men</a></li>
+          <li><a href="womens.html">Women</a></li>
+          <li><a href="loginpage.html">Login</a></li>
+          <li><a href="signup.html">SignUp</a></li>
+        </ul>
+      </div>
+    </div>
+    <h1>CartItems</h1>
+    <div id="price">Total Price:-0</div>
+    <!-- <div> -->
+    <input id="promocode" type="text" placeholder="Apply Promocode" />
+    <button id="promobtn">ApllyPromocode</button>
+    <div id="payment"><a href="pay.html"><button>Click to payment</button></a></h3></div>
+    <!-- </div> -->
+    <div class="mens"></div>
+  </body>
+</html>
+<script>
+  let addToCartData = JSON.parse(localStorage.getItem("cartData")) || [];
+
+  finalPrice(addToCartData);
+
+  function finalPrice(addToCartDat) {
+    let TotalPrices = addToCartData.reduce(function (acc, elem) {
+      return acc + +elem.price;
+    }, 0);
+
+    document.querySelector("#price").innerText = `Total Price:-${TotalPrices}`;
+
+    document.querySelector("button").addEventListener("click", function () {
+        let offer = document.querySelector("#promocode").value;
+        
+        if (offer == "masai30") {
+          let discount = TotalPrices - TotalPrices * 0.3;
+          document.querySelector( "#price").innerText = `Total Price:- ${discount}`;
+        }else{
+            document.querySelector("#price").innerText = `Total Price:-${TotalPrices}`;
+        }
+      });
+  }
+
+
+
+
+
+
+  carditemsDisplay(addToCartData);
+
+  function carditemsDisplay(addToCartData) {
+    document.querySelector(".mens").innerHTML = "";
+    addToCartData.map(function (elem, index) {
+      let divs = document.createElement("div");
+      let image = document.createElement("img");
+      image.setAttribute("src", elem.image_url);
+      let h3 = document.createElement("p");
+      h3.innerText = elem.name;
+      let p = document.createElement("p");
+      p.innerText = elem.price;
+      let buttons = document.createElement("button");
+      buttons.innerText = "Remove to cart";
+      buttons.addEventListener("click", function () {
+        deletToCart(index);
+      });
+      divs.append(image, h3, p, buttons);
+      document.querySelector(".mens").append(divs);
+    });
+
+    function deletToCart(index) {
+      addToCartData.splice(index, 1);
+      localStorage.setItem("cartData", JSON.stringify(addToCartData));
+      carditemsDisplay(addToCartData);
+      finalPrice(addToCartData);
+      // console.log(addToCartData)
+    }
+  }
+</script>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>otp details</title>
+</head>
+<body>
+    <h1>Please Enter Your OTP Here</h1>
+    <form action="">
+        <input id="otp" type="tel" placeholder="Enter OTP">
+        <input id="otpsubmit" type="submit" value="Submit">
+
+    </form>
+   
+</body>
+</html>
+
+<script>
+    document.querySelector("form").addEventListener("submit" ,gettingotp)
+let count=0
+    function gettingotp(e){
+        e.preventDefault()
+        // console.log("hello")
+        
+        if (document.querySelector("#otp").value=="1234"){
+            alert("Paymeent sucessful")
+            window.location.href="navbar.html"
+        }else if (count<3){
+            count++
+            alert("wrong otp")
+        }else{
+            count=0
+            window.location.href="pay.html"
+        }
+    }
+    
+</script>

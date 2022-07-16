@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartitems</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      form{
+        margin: auto;
+        margin: 20px;
+        position: absolute;
+        left: 37%;
+      }
+      input{
+        margin: 10px 0;
+        padding: 10px 40px;
+        color: rgb(15, 15, 15);
+        font-size: 18px;
+      }
+      h1{
+        text-align: center;
+      }
+      #btn{
+        padding: 10px 80px;
+        background-color: rgb(214, 165, 29);
+        /* background-color: transparent 100%; */
+        cursor: pointer;
+      }
+     
+    </style>
+  </head>
+  <body>
+    <!-- <div id="navbar">
+      <div id="logo">
+        <h2>Rebook</h2>
+      </div>
+      <div id="menu">
+        <ul>
+          <li><a href="mens.html">Men</a></li>
+          <li><a href="womens.html">Women</a></li>
+          <li><a href="loginpage.html">Login</a></li>
+          <li><a href="signup.html">SignUp</a></li>
+        </ul>
+      </div>
+    </div> -->
+
+    <h1>Enter your card details </h1>
+
+    <form action="">
+      <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{12}" autocomplete="cc-number" maxlength="12" minlength="12" placeholder="xxxx xxxx xxxx xxxx"> <br>
+      <input id="cvv" type="text" maxlength="5" minlength="5" placeholder="xx/xx"  > <br>
+      <input type="tel" placeholder="Enter Your Name"> <br>
+      <input  id="btn" type="submit" value="Confirm Payment">
+      <!-- <button>Confirm Payment</button> -->
+    </form>
+   
+  </body>
+</html>
+  <script>
+    document.querySelector("form").addEventListener("submit",payment)
+
+    function payment(e){
+e.preventDefault()
+      let cardNumber=document.querySelector("#ccn").value
+      let cvvdetails=document.querySelector("#cvv").value
+      console.log("helo")
+
+       if(cvvdetails=="" || cardNumber==""){
+        alert("error")      
+                }else{
+        window.location.href="otp.html"
+       }
+
+    }
+  </script>
